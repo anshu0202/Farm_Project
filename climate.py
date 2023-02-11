@@ -10,13 +10,14 @@ def climate_details(loc):
 
   # currently we are getting values only for the London,UK
   location = "London,UK"
-  weather_data = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={location}&appid={api_key}").json()
+  weather_data = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={loc}&appid={api_key}").json()
   humidity=weather_data['main']['humidity']
   temp=weather_data['main']['temp']
   pressure=weather_data['main']['pressure']
-  print("************************")
-  print("Crop details :")
+  
+#   print("Crop details :")
   crop_name=predict_value()
+  print("************************")
   print("Crop name : ",crop_name)
   print("Location : ",loc)
   print("Temperature : ",temp)
