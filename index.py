@@ -1,124 +1,124 @@
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
+# import pandas as pd
+# import numpy as np
+# import matplotlib.pyplot as plt
+# from sklearn.model_selection import train_test_split
+# from sklearn.preprocessing import LabelEncoder
 
 
 
-df=pd.read_csv("Crop_recommendation.csv")
-# df=pd.DataFrame(df)
+# df=pd.read_csv("Crop_recommendation.csv")
+# # df=pd.DataFrame(df)
 
 
-# It is used to know the columns of the Dataset
-# print(df.columns)
+# # It is used to know the columns of the Dataset
+# # print(df.columns)
 
 
 
 
-encoder = LabelEncoder()
-df['label'] = encoder.fit_transform(df['label'])
+# encoder = LabelEncoder()
+# df['label'] = encoder.fit_transform(df['label'])
 
 
 
 
-# Setting the independent and dependent features of the dataset
-features = df.iloc[:, :-1] # all columns except the last one
-target = df.iloc[:, -1] # the last column i.e crop name is the target  here
+# # Setting the independent and dependent features of the dataset
+# features = df.iloc[:, :-1] # all columns except the last one
+# target = df.iloc[:, -1] # the last column i.e crop name is the target  here
 
-encoder = LabelEncoder()
-df['label'] = encoder.fit_transform(df['label'])
+# encoder = LabelEncoder()
+# df['label'] = encoder.fit_transform(df['label'])
 
 
 
 
 
 
-# print("no of rows :", features.shape[0])
+# # print("no of rows :", features.shape[0])
 
 
-# In this example, the data.data and data.target represent the input features and target variables, respectively. The test_size parameter specifies what percentage of the data should be used for testing (in this case 20%). The random_state parameter is an optional parameter that allows you to specify the random seed, so that you get the same split each time you run the code. This can be useful if you want to reproduce your results.
+# # In this example, the data.data and data.target represent the input features and target variables, respectively. The test_size parameter specifies what percentage of the data should be used for testing (in this case 20%). The random_state parameter is an optional parameter that allows you to specify the random seed, so that you get the same split each time you run the code. This can be useful if you want to reproduce your results.
 
 
 
-X_train,X_test,y_train,y_test= train_test_split(features,target,test_size=0.30, random_state=42)
+# X_train,X_test,y_train,y_test= train_test_split(features,target,test_size=0.30, random_state=42)
 
-# print("Traing dataset is :")
-# print(X_train.shape[0])
+# # print("Traing dataset is :")
+# # print(X_train.shape[0])
 
-# print("*****************************************************")
+# # print("*****************************************************")
 
-# print("Testing dataset is : ")
-# print(X_test.shape[0])
+# # print("Testing dataset is : ")
+# # print(X_test.shape[0])
 
 
 
 
-# now implementing linear regression
+# # now implementing linear regression
 
 
-#standadrizing the dataset
-from sklearn.preprocessing import StandardScaler
+# #standadrizing the dataset
+# from sklearn.preprocessing import StandardScaler
 
 
-#it is used to initialize scaler
-scaler=StandardScaler()
-# print(X_train)
+# #it is used to initialize scaler
+# scaler=StandardScaler()
+# # print(X_train)
 
-X_train=  scaler.fit_transform(X_train)
+# X_train=  scaler.fit_transform(X_train)
 
 
 
-# print("*****************************************************")
-# print(X_train)
+# # print("*****************************************************")
+# # print(X_train)
 
-X_test=scaler.transform(X_test)
+# X_test=scaler.transform(X_test)
 
 
 
-#to revserse the changes
-# X_train=scaler.inverse.tarnsform(X_train)
+# #to revserse the changes
+# # X_train=scaler.inverse.tarnsform(X_train)
 
 
 
 
-from sklearn.linear_model import LinearRegression
+# from sklearn.linear_model import LinearRegression
 
-#cross validation
-from sklearn.model_selection import cross_val_score
+# #cross validation
+# from sklearn.model_selection import cross_val_score
 
-#creating a regression object
-regression=LinearRegression()
+# #creating a regression object
+# regression=LinearRegression()
 
-regression.fit(X_train, y_train)
+# regression.fit(X_train, y_train)
 
-# cv is used to specify no. of time we have to perform the cross validation i.e 5 models would be created and 
+# # cv is used to specify no. of time we have to perform the cross validation i.e 5 models would be created and 
 
-y_pred = model.predict(X_test)
-mse = mean_squared_error(y_test, y_pred)
-print("Mean Squared Error:", mse)
+# y_pred = model.predict(X_test)
+# mse = mean_squared_error(y_test, y_pred)
+# print("Mean Squared Error:", mse)
 
 
 
-mse=cross_val_score(regression,X_train,y_train,scoring="neg_mean_squared_error",cv=10)
+# # mse=cross_val_score(regression,X_train,y_train,scoring="neg_mean_squared_error",cv=10)
 
 
-# print("In progress...")
+# # print("In progress...")
 
 
-# it will give the difference between the predicted and the true value  so its value should be less as possible
-mse=np.mean(mse)
+# # it will give the difference between the predicted and the true value  so its value should be less as possible
+# # mse=np.mean(mse)
 
-# print(mse)
-# print(res)
+# # print(mse)
+# # print(res)
 
 
-# now we will do prediction
-reg_pred=regression.predict(X_test)
+# # now we will do prediction
+# reg_pred=regression.predict(X_test)
 
 
-print("predicted data is :")
-# print(reg_pred)
+# print("predicted data is :")
+# # print(reg_pred)
 
 
 # to konw wheather the predicted value is correct or not we will verify it with the  truth value i.e y_test
@@ -137,15 +137,15 @@ print("predicted data is :")
 
 
 
-x = np.radians(reg_pred)
-y = np.sin(x)
+# x = np.radians(reg_pred)
+# y = np.sin(x)
 
-plt.plot(reg_pred, y, label='Predicted values')
-plt.plot(reg_pred, y_test, label='Actual values')
-plt.xlabel('X values (degrees)')
-plt.ylabel('Y values (sine)')
-plt.title('Sine Graph')
-plt.legend()
+# plt.plot(reg_pred, y, label='Predicted values')
+# plt.plot(reg_pred, y_test, label='Actual values')
+# plt.xlabel('X values (degrees)')
+# plt.ylabel('Y values (sine)')
+# plt.title('Sine Graph')
+# plt.legend()
 # plt.show()
 
 
@@ -175,7 +175,74 @@ plt.legend()
 # print(sns.displot(reg_pred-y_test))
 
 
-# print("helo")
+#Here we have used RandomForest to predict the crop name 
+
+
+
+
+
+# import pandas as pd
+# from sklearn.ensemble import RandomForestClassifier
+# from sklearn.model_selection import train_test_split
+# from sklearn.metrics import accuracy_score
+
+# # Load the data into a pandas dataframe
+# df = pd.read_csv("Crop_recommendation.csv")
+
+# # Divide the data into features (X) and target (y)
+# # X = df.drop("crop_name", axis=1)
+# # y = df["crop_name"]
+
+
+# # # Setting the independent and dependent features of the dataset
+# X= df.iloc[:, :-1] # all columns except the last one
+# y= df.iloc[:, -1] # the last column i.e crop name is the target  here
+
+
+
+
+# # Split the data into training and testing sets
+# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# # Train a Random Forest classifier
+# clf = RandomForestClassifier(n_estimators=100, random_state=42)
+# clf.fit(X_train, y_train)
+
+# # Predict on the test set
+# y_pred = clf.predict(X_test)
+
+# # Calculate the accuracy of the model
+# accuracy = accuracy_score(y_test, y_pred)
+# print("Accuracy: ", accuracy)
+
+
+# # Create a feature set for a single sample
+# X_new = [[69,55,38,22.70883798,82.63941394,5.70080568,271.3248604]] # Replace ... with the remaining feature values
+
+# # Predict the crop name for the new sample
+# y_new = clf.predict(X_new)
+
+# # The predicted crop name is the first (and only) item in the y_new array
+# # print("Predicted crop name: ", y_new[0])
+
+
+
+
+
+# import pandas as pd
+# df = pd.read_csv('Crop_yeild.csv')
+
+# df=pd.DataFrame(df)
+# print(df)
+
+
+
+
+
+
+
+# data_top=df.head()
+# print(data_top)
 
 
 
